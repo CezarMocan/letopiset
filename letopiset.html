@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+  <title>Letopise&#539;ul vizual</title>
+
+  <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="vis/vis.js"></script>
+  <link href="vis/vis.css" rel="stylesheet" type="text/css" />
+  <link href="letopiset.css" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript">
+    var DIR = 'img/';
+
+    var nodes = null;
+    var edges = null;
+    var network = null;
+
+    function draw() {
+      // create people
+      nodes = [
+        {id: 1,  label: 'Cezar\n[Yale]',   image: DIR + 'cezar_edited.png', shape: 'image'},
+        {id: 2,  label: 'Roxana\n[Princeton]',  image: DIR + 'pisoi.png', shape: 'image'},
+        {id: 3,  label: 'Dragos\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 4,  label: 'Cristina\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},      
+        {id: 5,  label: 'Mihai\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 6,  label: 'Roxana Pop\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 7,  label: 'Luca\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 8,  label: 'Laura\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 9,  label: 'Bianca\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 10,  label: 'Horia\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 11,  label: 'Ciupan\n[Harvard]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 12,  label: 'Patricia\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 13,  label: 'Claudiu\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 14,  label: 'Ana Stoica\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 15,  label: 'Stan\n[Yale]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 16,  label: 'Octav\n[Harvard]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 17,  label: 'Iustina\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 18,  label: 'Denis\n[Harvard]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 19,  label: 'Cosmin\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 20,  label: 'Ioana\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 21,  label: 'Andronic\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 22,  label: 'Masi\n[Princeton, Yale]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 23,  label: 'Denisa\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 24,  label: 'Danutz\n[Yale]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 25,  label: 'Ovidia\n[Brown]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 26,  label: 'Tinu\n[Harvard]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 27,  label: 'Aurelian\n[Harvard]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 28,  label: 'Vladu\n[Brown, MIT]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 29,  label: 'Jules\n[Brown]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 30,  label: 'Bianca D.\n[MIT, Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 31,  label: 'Ana Constantin\n[Harvard]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 32,  label: 'Mara Zafiu\n[Penn]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 33,  label: 'Mihaela Curmei\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 34,  label: 'Monica Marinescu\n[Princeton]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 35,  label: 'Iulia Tamas\n[Yale]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 36,  label: 'Vlad Bacauanu\n[Yale]',  image: DIR + 'default.png', shape: 'image'},
+        {id: 37,  label: 'Iulia Tapescu\n[Penn]',  image: DIR + 'default.png', shape: 'image'},
+      ];
+
+      // create connections
+      edgeLength = 2000
+      edgeLabels = ["", "\n[Makeout session]", "\n[Futai]", "\n[Fuck buddies]", "\n[Dating]", "\n[Sufletu-n rai]"]
+      var color = '#FFFFFF';
+      edges = [
+        {from: 1, to: 2,  width: 15, label: "OZN", color: color, length: edgeLength},
+        {from: 2, to: 3,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 2, to: 19,  width: 10, label: "5" + edgeLabels[5], color: color, length: edgeLength},
+        {from: 3, to: 4,  width: 10, label: "1 / 2" + edgeLabels[1] + edgeLabels[2], color: color, length: edgeLength},
+        {from: 4, to: 5,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 5, to: 6,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 6, to: 7,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 7, to: 8,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 9, to: 10,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 9, to: 11,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 4, to: 10,  width: 10, label: "1" + edgeLabels[1], color: color, length: edgeLength},
+        {from: 12, to: 13,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 12, to: 1,  width: 10, label: "1" + edgeLabels[1], color: color, length: edgeLength},
+        {from: 7, to: 20,  width: 10, label: "1" + edgeLabels[1], color: color, length: edgeLength},
+        {from: 1, to: 14,  width: 10, label: "5" + edgeLabels[5], color: color, length: edgeLength},
+        {from: 14, to: 15,  width: 10, label: "5" + edgeLabels[5], color: color, length: edgeLength},
+        {from: 14, to: 16,  width: 10, label: "2" + edgeLabels[2], color: color, length: edgeLength},
+        {from: 17, to: 18,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 17, to: 21,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 22, to: 23,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 24, to: 25,  width: 10, label: "5" + edgeLabels[5], color: color, length: edgeLength},
+        {from: 25, to: 26,  width: 10, label: "2" + edgeLabels[2], color: color, length: edgeLength},
+        {from: 25, to: 27,  width: 10, label: "5" + edgeLabels[5], color: color, length: edgeLength},
+        {from: 25, to: 1,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 28, to: 29,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 28, to: 30,  width: 10, label: "3(?)" + edgeLabels[3], color: color, length: edgeLength},
+        {from: 1, to: 29,  width: 10, label: "1" + edgeLabels[1], color: color, length: edgeLength},
+        {from: 1, to: 31,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 16, to: 32,  width: 10, label: "5 / 3 / 2" + edgeLabels[5] + edgeLabels[3] + edgeLabels[2], color: color, length: edgeLength},
+        {from: 16, to: 33,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+        {from: 16, to: 34,  width: 10, label: "1" + edgeLabels[1], color: color, length: edgeLength},
+        {from: 1, to: 35,  width: 10, label: "1 / 3" + edgeLabels[1] + edgeLabels[3], color: color, length: edgeLength},
+        {from: 36, to: 37,  width: 10, label: "4" + edgeLabels[4], color: color, length: edgeLength},
+      ];
+
+      // create a network
+      var container = document.getElementById('mynetwork');
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+      var options = {
+        physics: {
+            barnesHut: {enabled: false},
+            repulsion: {
+                centralGravity: 0.1,
+                nodeDistance: 4000,
+                springLength: 50,
+                springConstant: 0.05,                
+                damping: 0.09
+            }
+        },        
+        nodes: {
+          fontColor: "white",
+          fontSize: 130,
+          fontFace: "courier",
+          fontFill: "black",
+          shape: "star",
+          radius: 3000
+        },
+        edges: {
+          fontFill: "white",
+          fontSize: 130,
+          fontFace: "courier",
+          fontColor: "black"
+        }
+      };
+      network = new vis.Network(container, data, options);
+    }
+  </script>
+</head>
+
+<body onload="draw()">
+  <div class="background-image">
+    <div class="background-layer"></div>
+  </div>
+
+  <div id="content">
+    <div id="title">
+      <span class="title-with-font"> Letopisetul </span>
+    </div>
+
+    <div id="mynetwork"></div>
+</div>
+
+</body>
+</html>
